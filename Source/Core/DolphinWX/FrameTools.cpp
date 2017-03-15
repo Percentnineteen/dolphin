@@ -734,13 +734,13 @@ void CFrame::StartGame(const std::string& filename)
 #endif
 
 #ifdef __APPLE__
-  CFStringRef reason_for_activity = CFSTR("Emulation Running");
-  m_disable_screensaver_success =
-  IOPMAssertionCreateWithName(
-  kIOPMAssertionTypeNoDisplaySleep,
-  kIOPMAssertionLevelOn,
-  reason_for_activity,
-  & m_disable_screensaver_id);
+    CFStringRef reason_for_activity = CFSTR("Emulation Running");
+    m_disable_screensaver_success =
+      IOPMAssertionCreateWithName(
+      kIOPMAssertionTypeNoPreventUserIdleDisplaySleep,
+      kIOPMAssertionLevelOn,
+      reason_for_activity,
+      & m_disable_screensaver_id);
 #endif
 
     // We need this specifically to support setting the focus properly when using
