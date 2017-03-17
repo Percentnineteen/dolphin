@@ -737,7 +737,7 @@ void CFrame::StartGame(const std::string& filename)
     CFStringRef reason_for_activity = CFSTR("Emulation Running");
     m_disable_screensaver_success =
       IOPMAssertionCreateWithName(
-      kIOPMAssertionTypeNoPreventUserIdleDisplaySleep,
+      kIOPMAssertionTypePreventUserIdleDisplaySleep,
       kIOPMAssertionLevelOn,
       reason_for_activity,
       & m_disable_screensaver_id);
