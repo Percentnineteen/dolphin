@@ -257,7 +257,7 @@ void SConfig::SaveCoreSettings(IniFile& ini)
   core->Set("SlotB", m_EXIDevice[1]);
   core->Set("SerialPort1", m_EXIDevice[2]);
   core->Set("BBA_MAC", m_bba_mac);
-  for (int i = 0; i < MAX_SI_CHANNELS; ++i)
+  for (int i = 0; i < SerialInterface::MAX_SI_CHANNELS; ++i)
   {
     core->Set(StringFromFormat("SIDevice%i", i), m_SIDevice[i]);
     core->Set(StringFromFormat("AdapterRumble%i", i), m_AdapterRumble[i]);
@@ -325,7 +325,7 @@ void SConfig::SaveNetworkSettings(IniFile& ini)
 
   network->Set("SSLDumpRead", m_SSLDumpRead);
   network->Set("SSLDumpWrite", m_SSLDumpWrite);
-  network->Set("SSLVerifyCert", m_SSLVerifyCert);
+  network->Set("SSLVerifyCertificates", m_SSLVerifyCert);
   network->Set("SSLDumpRootCA", m_SSLDumpRootCA);
   network->Set("SSLDumpPeerCert", m_SSLDumpPeerCert);
 }
@@ -577,7 +577,7 @@ void SConfig::LoadCoreSettings(IniFile& ini)
   core->Get("BBA_MAC", &m_bba_mac);
   core->Get("TimeProfiling", &bJITILTimeProfiling, false);
   core->Get("OutputIR", &bJITILOutputIR, false);
-  for (int i = 0; i < MAX_SI_CHANNELS; ++i)
+  for (int i = 0; i < SerialInterface::MAX_SI_CHANNELS; ++i)
   {
     core->Get(StringFromFormat("SIDevice%i", i), (u32*)&m_SIDevice[i],
               (i == 0) ? SIDEVICE_GC_CONTROLLER : SIDEVICE_NONE);
@@ -660,7 +660,7 @@ void SConfig::LoadNetworkSettings(IniFile& ini)
 
   network->Get("SSLDumpRead", &m_SSLDumpRead, false);
   network->Get("SSLDumpWrite", &m_SSLDumpWrite, false);
-  network->Get("SSLVerifyCert", &m_SSLVerifyCert, false);
+  network->Get("SSLVerifyCertificates", &m_SSLVerifyCert, true);
   network->Get("SSLDumpRootCA", &m_SSLDumpRootCA, false);
   network->Get("SSLDumpPeerCert", &m_SSLDumpPeerCert, false);
 }
